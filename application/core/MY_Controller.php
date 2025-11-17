@@ -11,22 +11,26 @@ class MY_Controller extends CI_Controller
         parent::__construct();
 
         $this->load->library('session');
-
         $this->load->helper(['url', 'form', 'security']);
 
-        $this->data['app_name'] = 'E‑Shop';
+        // Data global
+        $this->data['app_name'] = 'E-Shop';
         $this->data['base_url'] = base_url();
-
         $this->data['current_user'] = null;
-        if ($this->session->userdata('user_id')) {
+        $this->data['cart_count'] = 0;
+
+        $userId = $this->session->userdata('user_id');
+
+        // Current user
+        if ($userId) {
             $this->load->model('User_model');
-            $this->data['current_user'] = $this->User_model->getById($this->session->userdata('user_id'));
+            $this->data['current_user'] = $this->User_model->getById($userId);
         }
 
-        $this->data['cart_count'] = 0;
-        if ($this->session->userdata('user_id')) {
+        // Cart count
+        if ($userId) {
             $this->load->model('Cart_model');
-            $this->data['cart_count'] = $this->Cart_model->countItems($this->session->userdata('user_id'));
+            $this->data['cart_count'] = $this->Cart_model->countItems($userId);
         }
     }
 
@@ -41,6 +45,7 @@ class MY_Controller extends CI_Controller
         if ($return) {
             return $output;
         }
+
         echo $output;
     }
 }

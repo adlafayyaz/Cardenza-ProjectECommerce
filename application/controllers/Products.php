@@ -31,8 +31,14 @@ class Products extends MY_Controller
         if (!$product) {
             show_404();
         }
+
         $data['title'] = $product->name;
         $data['product'] = $product;
-        $this->load->view('products/detail', $data);
+
+        // DULU:
+        // $this->load->view('products/detail', $data);
+
+        // SEKARANG:
+        $this->render('products/detail', $data);
     }
 }

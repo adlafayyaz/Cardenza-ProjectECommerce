@@ -1,4 +1,3 @@
-<?php $this->load->view('layouts/header', ['title' => $title]); ?>
 <div class="container my-5">
     <h2>Your Cart</h2>
     <?php if (!empty($items)) { ?>
@@ -15,22 +14,38 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $total = 0;
+                <?php
+                $total = 0;
         foreach ($items as $item) {
-            $subtotal = $item->price * $item->quantity;
-            $total += $subtotal; ?>
+            $subtotal = $item['price'] * $item['quantity'];
+            $total += $subtotal;
+            ?>
                 <tr>
                     <td class="d-flex align-items-center">
-                        <img src="<?php echo base_url('public/assets/images/'.$item->image); ?>" alt="<?php echo $item->name; ?>" width="50" class="mr-3 rounded">
-                        <?php echo $item->name; ?>
+                        <img src="<?php echo base_url('public/assets/images/'.$item['image']); ?>"
+                             alt="<?php echo htmlspecialchars($item['name']); ?>"
+                             width="50"
+                             class="mr-3 rounded">
+                        <?php echo htmlspecialchars($item['name']); ?>
                     </td>
-                    <td class="text-center">Rp <?php echo number_format($item->price, 0, ',', '.'); ?></td>
+                    <td class="text-center">
+                        Rp <?php echo number_format($item['price'], 0, ',', '.'); ?>
+                    </td>
                     <td class="text-center" style="max-width:120px;">
-                        <input type="number" name="quantity[<?php echo $item->id; ?>]" value="<?php echo $item->quantity; ?>" min="1" class="form-control form-control-sm">
+                        <input type="number"
+                               name="quantity[<?php echo $item['product_id']; ?>]"
+                               value="<?php echo $item['quantity']; ?>"
+                               min="1"
+                               class="form-control form-control-sm">
                     </td>
-                    <td class="text-center">Rp <?php echo number_format($subtotal, 0, ',', '.'); ?></td>
+                    <td class="text-center">
+                        Rp <?php echo number_format($subtotal, 0, ',', '.'); ?>
+                    </td>
                     <td class="text-right">
-                        <a href="<?php echo base_url('cart/remove/'.$item->id); ?>" class="btn btn-sm btn-outline-danger">Remove</a>
+                        <a href="<?php echo base_url('cart/remove/'.$item['product_id']); ?>"
+                           class="btn btn-sm btn-outline-danger">
+                            Remove
+                        </a>
                     </td>
                 </tr>
                 <?php } ?>
@@ -46,8 +61,7 @@
         </div>
     </form>
     <?php } else { ?>
-    <p>Your cart is empty.</p>
-    <a href="<?php echo base_url('products'); ?>" class="btn btn-primary">Continue Shopping</a>
+        <p>Your cart is empty.</p>
+        <a href="<?php echo base_url('products'); ?>" class="btn btn-primary">Continue Shopping</a>
     <?php } ?>
 </div>
-<?php $this->load->view('layouts/footer'); ?>

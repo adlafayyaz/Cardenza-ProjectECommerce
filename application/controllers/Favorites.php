@@ -21,7 +21,12 @@ class Favorites extends MY_Controller
         $userId = $this->session->userdata('user_id');
         $data['title'] = 'Favorites';
         $data['items'] = $this->Favourite_model->getItems($userId);
-        $this->load->view('favourites/index', $data);
+
+        // SEBELUM:
+        // $this->load->view('favourites/index', $data);
+
+        // SESUDAH:
+        $this->render('favourites/index', $data);
     }
 
     /**

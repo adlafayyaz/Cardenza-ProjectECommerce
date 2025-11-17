@@ -22,54 +22,53 @@ class Cart extends MY_Controller
         $userId = $this->session->userdata('user_id');
         $data['title'] = 'Cart';
         $data['items'] = $this->Cart_model->getItems($userId);
-        $this->load->view('cart/index', $data);
+
+        // SEBELUM:
+        // $this->load->view('cart/index', $data);
+
+        // SESUDAH:
+        $this->render('cart/index', $data);
     }
 
-    /**
-     * Menambah produk ke cart. Jika produk sudah ada, quantity ditambah.
-     *
-     * @param int $productId
-     */
+    // ADD
     public function add($productId)
     {
         $userId = $this->session->userdata('user_id');
         if ($productId && $userId) {
-            $this->Cart_model->addItem($userId, $productId);
+            $this->Cart_model->addOrUpdate($userId, $productId, 1);
             $this->session->set_flashdata('success', 'Item added to cart');
         }
         redirect('products/detail/'.$productId);
     }
 
-    /**
-     * Memperbarui quantity produk dalam cart melalui form POST `quantity[id] => qty`.
-     */
+    // UPDATE
     public function update()
     {
+        $userId = $this->session->userdata('user_id');
         $quantities = $this->input->post('quantity');
-        if ($quantities) {
-            foreach ($quantities as $id => $qty) {
-                $this->Cart_model->updateQuantity($id, (int) $qty);
+
+        if ($quantities && $userId) {
+            foreach ($quantities as $productId => $qty) {
+                $this->Cart_model->updateQuantity($userId, $productId, (int) $qty);
             }
             $this->session->set_flashdata('success', 'Cart updated');
+        }
+
+        redirect('cart');
+    }
+
+    // REMOVE
+    public function remove($productId)
+    {
+        $userId = $this->session->userdata('user_id');
+        if ($userId && $productId) {
+            $this->Cart_model->removeItem($userId, $productId);
+            $this->session->set_flashdata('success', 'Item removed');
         }
         redirect('cart');
     }
 
-    /**
-     * Menghapus item cart berdasarkan id baris cart_items.
-     *
-     * @param int $id
-     */
-    public function remove($id)
-    {
-        $this->Cart_model->removeItem($id);
-        $this->session->set_flashdata('success', 'Item removed');
-        redirect('cart');
-    }
-
-    /**
-     * Checkout: buat order baru dari cart lalu kosongkan cart.
-     */
+    // CHECKOUT
     public function checkout()
     {
         $userId = $this->session->userdata('user_id');
@@ -77,7 +76,7 @@ class Cart extends MY_Controller
             redirect('auth/login');
         }
         $orderId = $this->Order_model->createFromCart($userId);
-        $this->Cart_model->clear($userId);
+        $this->Cart_model->clearCart($userId);
         $this->session->set_flashdata('success', 'Thank you! Your order has been placed.');
         redirect('account');
     }
