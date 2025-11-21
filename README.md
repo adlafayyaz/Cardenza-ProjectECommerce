@@ -1,4 +1,4 @@
-# ProjectECom — E-Commerce Fashion (CodeIgniter 3)
+# CARDENZA — E-Commerce Fashion (CodeIgniter 3)
 
 ProjectECom adalah aplikasi e-commerce yang dibangun menggunakan **CodeIgniter 3** sebagai **Tugas UAS Pemrograman Web**.  
 Website ini menyediakan fitur jual-beli produk fashion untuk **Pria, Wanita, dan Anak-anak**, lengkap dengan halaman user dan admin.
