@@ -14,13 +14,7 @@ Website ini menyediakan fitur jual-beli produk fashion untuk **Pria, Wanita, dan
 - 💳 Checkout & pembuatan pesanan
 - 📦 Halaman _My Account_ + riwayat pesanan
 - ❤️ Fitur Favorite Produk
-- 🔎 Pencarian produk
 - 🗂️ Filter berdasarkan kategori
-- 🧩 Halaman Admin:
-  - CRUD Produk
-  - CRUD Kategori
-  - CRUD User
-  - CRUD Orders
 
 ---
 
