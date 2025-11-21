@@ -25,4 +25,3 @@ Website ini menyediakan fitur jual-beli produk fashion untuk **Pria, Wanita, dan
 - 🗂️ CRUD Kategori
 - 👤 Manajemen User
 - 📝 Manajemen Pesanan
-- ❌ Konfirmasi hapus produk (JavaScript)
