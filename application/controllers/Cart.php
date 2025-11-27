@@ -7,7 +7,7 @@ class Cart extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['Cart_model', 'Product_model', 'Order_model']);
+        $this->load->model(['Cart_model', 'Product_model', 'Order_model', 'Order_item_model']);
 
         // Wajib login
         if (!$this->session->userdata('user_id')) {
@@ -16,7 +16,8 @@ class Cart extends MY_Controller
     }
 
     /**
-     * Tampilkan isi cart.
+     * Menampilkan isi keranjang belanja pengguna.
+     * Mengambil data item dari Cart_model berdasarkan user ID dan merender view 'cart/index'.
      */
     public function index()
     {
@@ -28,7 +29,8 @@ class Cart extends MY_Controller
     }
 
     /**
-     * Tambah produk ke cart.
+     * Menambahkan produk ke dalam keranjang belanja.
+     * Menerima ID produk, memvalidasi sesi pengguna, dan menyimpan data ke database melalui Cart_model.
      */
     public function add($productId)
     {
@@ -44,7 +46,8 @@ class Cart extends MY_Controller
     }
 
     /**
-     * Update jumlah item.
+     * Memperbarui jumlah item dalam keranjang belanja.
+     * Menerima input array quantity dari form dan mengupdate data di database.
      */
     public function update()
     {
@@ -62,7 +65,8 @@ class Cart extends MY_Controller
     }
 
     /**
-     * Hapus item dari cart.
+     * Menghapus item tertentu dari keranjang belanja.
+     * Menerima product ID dan menghapus data terkait dari database keranjang pengguna.
      */
     public function remove($productId)
     {
@@ -77,9 +81,36 @@ class Cart extends MY_Controller
     }
 
     /**
-     * Checkout dan buat order.
+     * Menampilkan halaman checkout.
+     * Memungkinkan pengguna mengisi data pengiriman dan memilih metode pembayaran.
      */
     public function checkout()
+    {
+        $userId = $this->session->userdata('user_id');
+        $data['title'] = 'Checkout';
+        $data['items'] = $this->Cart_model->getItems($userId);
+        
+        // Cek jika cart kosong
+        if (empty($data['items'])) {
+            $this->session->set_flashdata('error', 'Keranjang belanja Anda kosong.');
+            redirect('products');
+        }
+
+        // Hitung total
+        $total = 0;
+        foreach ($data['items'] as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        $data['total'] = $total;
+
+        $this->render('cart/checkout', $data);
+    }
+
+    /**
+     * Memproses checkout pesanan dari form modal.
+     * Memvalidasi input pengguna, membuat pesanan baru di database, dan mengarahkan ke halaman pembayaran.
+     */
+    public function process_checkout()
     {
         $userId = $this->session->userdata('user_id');
 
@@ -87,10 +118,88 @@ class Cart extends MY_Controller
             redirect('auth/login');
         }
 
-        $orderId = $this->Order_model->createFromCart($userId);
-        $this->Cart_model->clearCart($userId);
+        $name = $this->input->post('recipient_name');
+        $address = $this->input->post('recipient_address');
+        $paymentMethod = $this->input->post('payment_method');
 
-        $this->session->set_flashdata('success', 'Thank you! Your order has been placed.');
-        redirect('account');
+        if (!$name || !$address || !$paymentMethod) {
+            $this->session->set_flashdata('error', 'Please fill in all fields.');
+            redirect('cart');
+        }
+
+        $checkoutData = [
+            'recipient_name' => $name,
+            'recipient_address' => $address,
+            'payment_method' => $paymentMethod,
+        ];
+
+        $orderId = $this->Order_model->createFromCart($userId, $checkoutData);
+
+        if ($orderId) {
+            $this->session->set_flashdata('success', 'Order placed successfully! Please complete payment.');
+            redirect('cart/payment/' . $orderId);
+        } else {
+            $this->session->set_flashdata('error', 'Failed to place order. Cart might be empty.');
+            redirect('cart');
+        }
+    }
+    /**
+     * Menampilkan halaman pembayaran untuk pesanan tertentu.
+     * Memvalidasi kepemilikan pesanan dan menampilkan detail order serta instruksi pembayaran.
+     */
+    public function payment($id)
+    {
+        $order = $this->Order_model->getById($id);
+
+        if (!$order || $order['user_id'] != $this->session->userdata('user_id')) {
+            show_404();
+        }
+
+        $data['title'] = 'Payment';
+        $data['order'] = $order;
+        $data['items'] = $this->Order_item_model->getItemsByOrder($id);
+
+        $this->render('cart/payment', $data);
+    }
+
+    /**
+     * Mengunggah bukti pembayaran untuk pesanan.
+     * Menangani upload file gambar, memvalidasi format, dan memperbarui status bukti bayar di database.
+     */
+    public function upload_proof($id)
+    {
+        $order = $this->Order_model->getById($id);
+
+        if (!$order || $order['user_id'] != $this->session->userdata('user_id')) {
+            show_404();
+        }
+
+        $config['upload_path'] = './public/assets/images/proofs/';
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = 2048; // 2MB
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        // Ensure directory exists
+        if (!is_dir($config['upload_path'])) {
+            mkdir($config['upload_path'], 0777, true);
+        }
+
+        if (!$this->upload->do_upload('payment_proof')) {
+            $this->session->set_flashdata('error', $this->upload->display_errors());
+            redirect('cart/payment/' . $id);
+        } else {
+            $uploadData = $this->upload->data();
+            $filename = 'proofs/' . $uploadData['file_name'];
+
+            $this->Order_model->updatePaymentProof($id, $filename);
+            
+            // Set status to paid automatically, admin will review later
+            $this->Order_model->update($id, ['status' => 'paid']);
+
+            $this->session->set_flashdata('success', 'Payment proof uploaded successfully!');
+            redirect('account');
+        }
     }
 }

@@ -22,6 +22,7 @@ class Auth extends MY_Controller
         }
 
         $data['title'] = 'Login';
+        $data['hide_footer'] = true;
 
         if ($this->input->method() === 'post') {
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -66,6 +67,7 @@ class Auth extends MY_Controller
         }
 
         $data['title'] = 'Register';
+        $data['hide_footer'] = true;
 
         if ($this->input->method() === 'post') {
             $this->form_validation->set_rules('name', 'Name', 'required');

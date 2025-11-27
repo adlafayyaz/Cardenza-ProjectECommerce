@@ -1,36 +1,137 @@
-<div class="container py-5" style="max-width: 900px;">
-    <h1 class="h3 mb-4 text-uppercase fw-bold">About Cardenza</h1>
+<!-- Bagian Hero: Menampilkan judul halaman dengan latar belakang gambar. -->
+<!-- HERO -->
+<div class="about-hero" style="background-image: url('<?php echo base_url('public/assets/images/hero.jpg'); ?>');" data-aos="fade-up">
+    <h1>About Cardenza</h1>
+</div>
 
-    <p class="mb-4" style="font-size: 0.95rem; line-height: 1.7;">
-        <strong>CARDENZA</strong> adalah project aplikasi e-commerce yang dibangun menggunakan 
-        <strong>CodeIgniter 3</strong> sebagai bagian dari Tugas UAS Pemrograman Web.
-        Website ini menyediakan fitur jual-beli produk fashion untuk Pria, Wanita, dan Anak-anak, 
-        dengan tampilan modern serta fungsi lengkap untuk pengguna dan admin.
+<div class="container py-5" style="max-width: 1080px;">
+
+    <!-- Bagian Cerita Kami: Menjelaskan latar belakang dan filosofi brand Cardenza. -->
+    <!-- OUR STORY -->
+    <h2 class="about-section-title text-center mt-0" data-aos="fade-up">Our Story</h2>
+    <p class="about-text text-center mb-5 mx-auto" style="max-width: 760px;" data-aos="fade-up">
+        Cardenza adalah brand fashion modern yang lahir dari keinginan untuk menghadirkan gaya minimalis,
+        elegan, dan timeless bagi generasi muda. Kami percaya bahwa pakaian bukan sekadar penutup tubuh,
+        tetapi representasi identitas dan kepercayaan diri.
     </p>
 
-    <h3 class="h5 mt-4 mb-3 fw-bold">Tujuan Pengembangan</h3>
-    <p style="font-size: 0.95rem; line-height: 1.7;">
-        Proyek ini bertujuan untuk mengimplementasikan konsep pemrograman web melalui 
-        pengembangan sistem e-commerce yang memiliki fitur utama seperti autentikasi pengguna, 
-        manajemen produk, keranjang belanja, hingga sistem pemesanan.
-    </p>
+    <hr class="my-5 opacity-50">
 
-    <h3 class="h5 mt-4 mb-3 fw-bold">Teknologi yang Digunakan</h3>
-    <ul style="font-size: 0.95rem; line-height: 1.7;">
-        <li>CodeIgniter 3 (Framework PHP)</li>
-        <li>MySQL Database</li>
-        <li>Bootstrap 5</li>
-        <li>HTML, CSS, dan JavaScript</li>
-    </ul>
+    <!-- Bagian Tujuan: Menjelaskan tujuan akademis dari pengembangan proyek website ini. -->
+    <!-- PURPOSE -->
+    <div class="row g-4 align-items-center" data-aos="fade-up">
+        <div class="col-md-6">
+            <img src="<?php echo base_url('public/assets/images/about/tujuan.png'); ?>"
+                 class="about-img shadow-sm" alt="Tujuan Pengembangan">
+        </div>
 
-    <h3 class="h5 mt-5 mb-3 fw-bold">Kelompok 4 - Pembuat Project</h3>
-    <p class="mb-3" style="font-size: 0.95rem;">Proyek ini dikembangkan oleh:</p>
+        <div class="col-md-6">
+            <h3 class="about-section-title">Tujuan Pengembangan</h3>
+            <p class="about-text">
+                Proyek ini bertujuan untuk mengimplementasikan konsep pemrograman web melalui pengembangan sistem 
+                e-commerce modern dengan fitur lengkap, mulai dari autentikasi pengguna, manajemen produk,
+                keranjang belanja, hingga checkout.
+            </p>
+        </div>
+    </div>
 
-    <ul style="font-size: 0.95rem; line-height: 1.7;">
-        <li>Rafid Abdan Syakur (2410512141)</li>
-        <li>Fathi Muhammad Luthfi Cardiana (2410512142)</li>
-        <li>Muhammad Adla Fayyaz Fauzy (2410512154)</li>
-        <li>Muhammad Syauqi Rabbani (2410512166)</li>
-    </ul>
+    <!-- Bagian Teknologi: Menampilkan stack teknologi yang digunakan dalam pembuatan website. -->
+    <!-- TECH -->
+    <div class="row g-4 align-items-center mt-4" data-aos="fade-up">
+        <div class="col-md-6 order-md-2">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475"
+                 class="about-img shadow-sm" alt="Teknologi">
+        </div>
+
+        <div class="col-md-6 order-md-1">
+            <h3 class="about-section-title">Teknologi yang Digunakan</h3>
+            <p class="about-text">
+                Pengembangan website Cardenza mengintegrasikan CodeIgniter 3, MySQL Database, dan Bootstrap 5 sebagai 
+                fondasi utama. Seluruh tampilan dirancang menggunakan kombinasi HTML, CSS, 
+                dan JavaScript untuk menciptakan pengalaman yang clean, minimalis, dan elegan.
+            </p>
+        </div>
+    </div>
+
+    <hr class="my-5 opacity-50">
+
+    <!-- Bagian Visi & Misi: Menjabarkan visi dan misi perusahaan ke depan. -->
+    <!-- VISI MISI -->
+    <h3 class="about-section-title" data-aos="fade-up">Visi & Misi Cardenza</h3>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-6" data-aos="fade-up">
+            <h5><strong>Visi</strong></h5>
+            <p class="about-text">
+                Menjadi brand fashion modern yang elegan dan minimalis dengan pengalaman berbelanja digital
+                premium bagi generasi muda Indonesia.
+            </p>
+        </div>
+
+        <div class="col-md-6" data-aos="fade-up">
+            <h5><strong>Misi</strong></h5>
+            <ul class="about-text ps-3">
+                <li>Menghadirkan desain website aesthetic & profesional.</li>
+                <li>Fokus pada user experience yang cepat & intuitif.</li>
+                <li>Membangun sistem responsif dan scalable.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="my-5 opacity-50">
+
+    <!-- Bagian Showroom: Menampilkan konsep visual toko fisik Cardenza. -->
+    <!-- SHOWROOM -->
+    <h3 class="about-section-title" data-aos="fade-up">Store & Showroom Concept</h3>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-6" data-aos="fade-up">
+            <img src="<?php echo base_url('public/assets/images/about/toko.jpg'); ?>"
+                 class="about-img shadow-sm" alt="Showroom">
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center" data-aos="fade-up">
+            <p class="about-text">
+                Konsep showroom Cardenza mengadopsi nuansa galeri modern, bersih, tertata, dan 
+                didominasi warna hitam putih. Setiap elemen dirancang dengan 
+                fokus pada detail untuk menampilkan karakter brand yang elegan dan minimalis.
+            </p>
+        </div>
+    </div>
+
+    <hr class="my-5 opacity-50">
+
+    <!-- Bagian Tim: Memperkenalkan anggota tim pengembang beserta foto dan identitasnya. -->
+    <!-- TEAM -->
+    <h3 class="about-section-title" data-aos="fade-up">Tim Pengembang Cardenza</h3>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-3 col-6 text-center" data-aos="fade-up">
+            <img src="<?php echo base_url('public/assets/images/about/pit.jpg'); ?>"
+                 class="team-img shadow-sm" alt="Rafid">
+            <p class="team-name">Rafid Abdan Syakur</p>
+            <p class="team-id">2410512141</p>
+        </div>
+
+        <div class="col-md-3 col-6 text-center" data-aos="fade-up">
+            <img src="<?php echo base_url('public/assets/images/about/cardiana.jpg'); ?>" 
+                 class="team-img shadow-sm" alt="Fathi">
+            <p class="team-name">Fathi M. Luthfi Cardiana</p>
+            <p class="team-id">2410512142</p>
+        </div>
+
+        <div class="col-md-3 col-6 text-center" data-aos="fade-up">
+            <img src="<?php echo base_url('public/assets/images/about/adla.jpg'); ?>"
+                 class="team-img shadow-sm" alt="Adla">
+            <p class="team-name">M. Adla Fayyaz Fauzy</p>
+            <p class="team-id">2410512154</p>
+        </div>
+
+        <div class="col-md-3 col-6 text-center" data-aos="fade-up">
+            <img src="<?php echo base_url('public/assets/images/about/uqi.jpg'); ?>"
+                 class="team-img shadow-sm" alt="Syauqi">
+            <p class="team-name">Muhammad Syauqi Rabbani</p>
+            <p class="team-id">2410512166</p>
+        </div>
     </div>
 </div>

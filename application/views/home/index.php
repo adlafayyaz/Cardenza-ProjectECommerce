@@ -24,12 +24,12 @@
 <!-- Section: Find Your Look -->
 <section class="py-5 text-center find-look-section">
     <div class="container">
-        <h2 class="mb-4 fw-bold">Find Your Look</h2>
+        <h2 class="mb-4 fw-bold" data-aos="fade-up">Find Your Look</h2>
 
         <div class="row g-4">
 
             <!-- WOMEN -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <a href="<?php echo site_url('products?category=women'); ?>" class="look-box">
                     <div class="look-img"
                          style="background-image:url('<?php echo base_url('public/assets/images/women.jpg'); ?>');">
@@ -39,7 +39,7 @@
             </div>
 
             <!-- MEN -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <a href="<?php echo site_url('products?category=men'); ?>" class="look-box">
                     <div class="look-img"
                          style="background-image:url('<?php echo base_url('public/assets/images/men.jpg'); ?>');">
@@ -49,7 +49,7 @@
             </div>
 
             <!-- KIDS -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <a href="<?php echo site_url('products?category=kids'); ?>" class="look-box">
                     <div class="look-img"
                          style="background-image:url('<?php echo base_url('public/assets/images/kids.jpg'); ?>');">
@@ -67,9 +67,9 @@
     <div class="container">
 
         <!-- Header Best Seller -->
-        <div class="d-flex justify-content-between align-items-end mb-5">
+        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
             <div>
-                <h2 class="fw-bold mb-1">Best Sellers</h2>
+                <h2 class="fw-bold mb-1">NEW ARRIVALS</h2>
                 <p class="text-muted mb-0">Top picks for the season.</p>
             </div>
             <a href="<?php echo site_url('products'); ?>" class="view-all-link">
@@ -81,7 +81,7 @@
         <?php if (!empty($best_sellers)) { ?>
             <div class="row g-4">
                 <?php foreach ($best_sellers as $item) { ?>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
                         <a href="<?php echo site_url('products/detail/'.($item['slug'] ?? $item['id'])); ?>"
                            class="product-card">
                             

@@ -61,6 +61,7 @@ class Products extends Admin_Controller
             $config['upload_path'] = './public/assets/images/products/';
             $config['allowed_types'] = 'jpg|jpeg|png';
             $config['max_size'] = 2048;
+            $config['encrypt_name'] = true;
 
             $this->upload->initialize($config);
 
@@ -134,6 +135,7 @@ class Products extends Admin_Controller
             $config['upload_path'] = './public/assets/images/products/';
             $config['allowed_types'] = 'jpg|jpeg|png';
             $config['max_size'] = 2048;
+            $config['encrypt_name'] = true;
 
             $this->upload->initialize($config);
 

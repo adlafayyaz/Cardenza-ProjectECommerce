@@ -2,10 +2,10 @@
 <div class="container py-5">
     <!-- Header + filter kategori -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="h3 mb-1">All Products</h1>
-            <p class="text-muted mb-0">Temukan outfit terbaikmu di sini.</p>
-        </div>
+    <div data-aos="fade-up">
+        <h1 class="h3 mb-1">All Products</h1>
+        <p class="text-muted mb-0">Temukan outfit terbaikmu di sini.</p>
+    </div>
 
         <?php if (!empty($categories)) { ?>
             <form method="get" class="d-flex align-items-center gap-2">
@@ -14,8 +14,8 @@
                 <select
                     name="category"
                     id="category"
-                    class="form-select form-select-sm"
-                    style="width: auto;"
+                    class="form-select"
+                    style="width: auto; min-width: 150px;"
                     onchange="this.form.submit()"
                 >
                     <option value="">Semua</option>
@@ -36,7 +36,7 @@
     <?php if (!empty($products)) { ?>
         <div class="row">
             <?php foreach ($products as $product) { ?>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100">
                         <img
                             src="<?php echo base_url('public/assets/images/'.($product['image'] ?? 'placeholder.jpg')); ?>"

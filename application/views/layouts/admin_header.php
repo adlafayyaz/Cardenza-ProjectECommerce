@@ -22,18 +22,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- Admin specific styles -->
     <link rel="stylesheet" href="<?php echo base_url('public/assets/css/admin.css'); ?>">
+    <style>
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #ffffff !important;
+        }
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="bg-light">
 
 <!-- Navbar area admin -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-    <div class="container px-5">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+    <div class="container-fluid px-4">
 
         <!-- Brand Admin -->
-        <a class="navbar-brand header-brand d-flex align-items-baseline"
+        <a class="navbar-brand d-flex align-items-center gap-2"
            href="<?php echo site_url('admin/dashboard'); ?>">
-            <span>CARDENZA</span>
-            <span class="admin-badge ms-2">Admin</span>
+            <i class="bi bi-shield-lock-fill fs-4"></i>
+            <span class="fw-bold">CARDENZA ADMIN</span>
         </a>
 
         <!-- Toggle mobile -->
@@ -48,46 +57,46 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <!-- Menu admin -->
         <div class="collapse navbar-collapse" id="adminNavbar">
-            <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a>
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'dashboard') ? 'active' : ''; ?>" 
+                       href="<?php echo site_url('admin/dashboard'); ?>">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('admin/products'); ?>">Products</a>
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'products') ? 'active' : ''; ?>" 
+                       href="<?php echo site_url('admin/products'); ?>">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('admin/categories'); ?>">Categories</a>
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'categories') ? 'active' : ''; ?>" 
+                       href="<?php echo site_url('admin/categories'); ?>">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('admin/orders'); ?>">Orders</a>
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'orders') ? 'active' : ''; ?>" 
+                       href="<?php echo site_url('admin/orders'); ?>">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('admin/users'); ?>">Users</a>
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'users') ? 'active' : ''; ?>" 
+                       href="<?php echo site_url('admin/users'); ?>">Users</a>
+                </li>
+                
+                <li class="nav-item ms-lg-3">
+                    <div class="dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <?php echo htmlspecialchars($this->session->userdata('name') ?? 'Admin'); ?>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="<?php echo site_url('home'); ?>"><i class="bi bi-shop me-2"></i>View Store</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="<?php echo site_url('auth/logout'); ?>"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
-
-            <!-- Info admin + tombol -->
-            <div class="d-flex align-items-center gap-3">
-                <?php $adminName = $this->session->userdata('name'); ?>
-                <?php if (!empty($adminName)) { ?>
-                    <span class="text-muted">
-                        Hi, <?php echo htmlspecialchars($adminName); ?>
-                    </span>
-                <?php } ?>
-
-                <a href="<?php echo site_url('auth/logout'); ?>"
-                   class="btn admin-btn btn-danger text-white">
-                    Logout
-                </a>
-
-                <a href="<?php echo site_url('home'); ?>"
-                   class="btn admin-btn btn-secondary text-white">
-                    Back to Store
-                </a>
-            </div>
         </div>
     </div>
 </nav>
 
 <!-- Wrapper konten admin -->
-<div class="container-fluid px-5" style="padding-top: 90px;">
+<div class="container-fluid px-4" style="padding-top: 100px; padding-bottom: 40px;">

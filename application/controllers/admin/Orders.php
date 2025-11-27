@@ -20,6 +20,9 @@ class Orders extends Admin_Controller
      */
     public function index()
     {
+        // Auto cancel old orders
+        $this->Order_model->autoCancelOldOrders();
+
         $data['title'] = 'Manage Orders';
         $data['orders'] = $this->Order_model->getAllWithUser();
 
@@ -53,6 +56,18 @@ class Orders extends Admin_Controller
         $this->Order_model->update($id, ['status' => $status]);
         $this->session->set_flashdata('success', 'Order status updated');
 
+        redirect('admin/orders');
+    }
+
+    /**
+     * Delete order.
+     */
+    public function delete($id)
+    {
+        // Optional: Check if order exists or can be deleted
+        $this->Order_model->delete($id); 
+        
+        $this->session->set_flashdata('success', 'Order deleted successfully');
         redirect('admin/orders');
     }
 }

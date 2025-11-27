@@ -17,6 +17,7 @@
                             src="<?php echo base_url('public/assets/images/'.$image); ?>"
                             class="card-img-top"
                             alt="<?php echo $name; ?>"
+                            style="height: 200px; object-fit: cover;"
                         >
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title mb-1"><?php echo $name; ?></h5>

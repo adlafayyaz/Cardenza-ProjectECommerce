@@ -14,7 +14,8 @@ class Products extends MY_Controller
     }
 
     /**
-     * List produk + filter kategori.
+     * Menampilkan daftar produk dengan fitur filter kategori.
+     * Mengambil data kategori untuk dropdown dan data produk sesuai filter yang dipilih.
      */
     public function index()
     {
@@ -45,7 +46,8 @@ class Products extends MY_Controller
     }
 
     /**
-     * Detail produk.
+     * Menampilkan halaman detail untuk satu produk tertentu.
+     * Mengambil data produk berdasarkan slug dan menampilkannya ke view detail.
      */
     public function detail($slug = null)
     {
@@ -65,7 +67,8 @@ class Products extends MY_Controller
     }
 
     /**
-     * Tambah ke cart.
+     * Menambahkan produk ke keranjang belanja pengguna.
+     * Memeriksa sesi login dan memanggil model Cart untuk menyimpan item.
      */
     public function add_to_cart($productId)
     {
@@ -89,7 +92,8 @@ class Products extends MY_Controller
     }
 
     /**
-     * Toggle favorite.
+     * Menandai atau menghapus tanda favorit pada produk.
+     * Mengubah status favorit produk untuk user yang sedang login.
      */
     public function toggle_favorite($productId)
     {

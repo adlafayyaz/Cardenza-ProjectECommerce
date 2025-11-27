@@ -20,7 +20,9 @@ class MY_Controller extends CI_Controller
         $this->data['app_name'] = 'Cardenza';
         $this->data['base_url'] = base_url();
         $this->data['current_user'] = null;
+        $this->data['current_user'] = null;
         $this->data['cart_count'] = 0;
+        $this->data['hide_footer'] = false; // Default show footer
 
         $userId = $this->session->userdata('user_id');
 

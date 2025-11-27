@@ -438,3 +438,173 @@ body {
 .footer-copyright {
 	color: #666666;
 }
+
+/* ============================
+   ABOUT PAGE
+   ============================ */
+
+.about-hero {
+    width: 100%;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px; /* Reduced from 60px */
+}
+
+/* Removed grayscale filter */
+
+/* Overlay gelap untuk hero about */
+.about-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.about-hero h1 {
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.45);
+    position: relative;
+    z-index: 2;
+}
+
+.about-section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #555;
+}
+
+/* Gambar di halaman about (tanpa grayscale) */
+.about-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.about-img:hover {
+    transform: scale(1.02);
+}
+
+/* Team Member Image */
+.team-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.team-img:hover {
+    transform: scale(1.03);
+}
+
+.team-name {
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.team-id {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* ============================
+   AUTH PAGES (Login & Register)
+   ============================ */
+
+.auth-page {
+    background-color: #f8f9fa; /* Light gray background */
+    min-height: calc(100vh - 72px); /* Full height minus header */
+    display: flex;
+    align-items: center;
+    padding: 20px 0; /* Reduced padding */
+}
+
+.glass-card {
+    background: #ffffff;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.glass-card h1 {
+    color: #333;
+    font-weight: 700;
+}
+
+.glass-card p {
+    color: #555;
+}
+
+.glass-card .form-control {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.glass-card .form-control:focus {
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+.glass-card .btn-primary {
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 600;
+    background: #198754; /* Green success color */
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.glass-card .btn-primary:hover {
+    background: #157347; /* Darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
+}
+
+.glass-card .btn-success {
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+
+/* ============================
+   CART QUANTITY BOX
+   ============================ */
+
+.quantity-box button {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+}
+
+.qty-input {
+    border-radius: 6px;
+}

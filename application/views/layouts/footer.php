@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 
 <!-- Footer Frontend -->
+<?php if (empty($hide_footer)) { ?>
 <footer class="cardenza-footer">
     <div class="container">
         <div class="row g-4">
@@ -78,9 +79,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </div>
     </div>
 </footer>
+<?php } ?>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
 
 </body>
 </html>
